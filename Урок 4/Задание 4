@@ -1,0 +1,10 @@
+print('Введите стоимость мяча руб.:')
+r = int(input())
+print('Введите стоимость мяча коп.:')
+k = int(input())
+print('Введите кол-во мячей:')
+n = int(input())
+price = (r + k / 100) * n
+price_r = int(price)
+price_k = int((price - price_r)*100)
+print('За', n, 'мячей нужно заплатить', price_r, 'рублей и', price_k, 'копеек')
