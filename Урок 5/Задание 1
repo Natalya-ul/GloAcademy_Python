@@ -1,0 +1,8 @@
+print('Введите пароль:')
+password1 = input()
+print('Введите пароль еще раз:')
+password2 = input()
+if password1 == password2:
+    print('Все ОК!')
+else:
+    print('Пароли не совпадают!')
