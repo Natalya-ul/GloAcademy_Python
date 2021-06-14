@@ -1,0 +1,7 @@
+from math import ceil
+print('Введите кол-во задач:')
+k = int(input())
+print('Введите кол-во решаемых задач за день:')
+m = int(input())
+d = ceil(k / m)
+print(k, 'задач можно решить за', d, 'дней')
