@@ -1,7 +1,8 @@
 print('Введите вес дыни в кг. (от 1 до 100):')
 num = int(input())
-num2 = num - 2
-if num2 > 0 and num2 % 2 == 0:
+if not (1 <= num <= 100):
+    print('ошибка ввода')
+elif (num - 2) > 0 and (num - 2) % 2 == 0:
     print('YES')
 else:
     print('NO')
