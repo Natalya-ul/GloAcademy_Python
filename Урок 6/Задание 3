@@ -1,9 +1,9 @@
 article_1 = input()
 article_2 = input()
 article_3 = input()
-if len(article_1) >= len(article_2) and len(article_1) >= len(article_3):
+if len(article_1) > len(article_2) and len(article_1) > len(article_3):
     print(article_1)
-elif len(article_2) >= len(article_1) and len(article_2) >= len(article_3):
+elif len(article_2) > len(article_1) and len(article_2) > len(article_3):
     print(article_2)
 else:
     print(article_3)
