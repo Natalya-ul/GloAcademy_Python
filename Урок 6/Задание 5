@@ -1,0 +1,6 @@
+print('Введите ваш адрес электронной почты:')
+email = input()
+if '@' not in email or '.' not in email:
+    print('Некорректный')
+else:
+    print('Корректный')
