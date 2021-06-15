@@ -1,0 +1,9 @@
+article_1 = 'Недавно проходил обучение в Academy.'
+article_2 = 'Недавно проходил обучение'
+article_3 = 'Недавно проходил обучение в Academy. Все очень круто'
+if len(article_1) >= len(article_2) and len(article_1) >= len(article_3):
+    print(article_1)
+elif len(article_2) >= len(article_1) and len(article_2) >= len(article_3):
+    print(article_2)
+else:
+    print(article_3)
