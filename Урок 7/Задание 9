@@ -1,12 +1,12 @@
-n = int(input())
+print('Введите натуральное число (кол-во чисел в последовательности):')
+amount_num = int(input())
+print('Введите последовательность чисел: ')
 flag = 0
-for i in range(0, n):
+for i in range(0, amount_num):
     number = int(input())
     if number % 2 != 0:
         flag = 1
-    else:
-        flag = 0
-if flag == 1:
-    print('YES')
+if flag != 0:
+    print('YES - среди чисел есть хотя бы одно нечетное')
 else:
-    print('NO')
+    print('NO - среди чисел нет нечетных')
