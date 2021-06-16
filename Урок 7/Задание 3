@@ -2,6 +2,7 @@ print('Введите первое целое число:')
 number1 = int(input())
 print('Введите второе целое число:')
 number2 = int(input())
+print('Числа на промежутке от', number1, 'до', number2, 'в возрастающем порядке:')
 if number2 > number1:
     for i in range(number1, number2 + 1):
         print(i)
