@@ -2,7 +2,6 @@ print('Введите последовательность целых чисел
 number = int(input())
 count_pos = 0
 count_neg = 0
-total = 0
 while number != 0:
       if number > 0:
             count_pos += 1
