@@ -1,0 +1,12 @@
+print('Введите последовательность целых чисел (заверашется числом 0):')
+number = int(input())
+count_pos = 0
+count_neg = 0
+total = 0
+while number != 0:
+      if number > 0:
+            count_pos += 1
+      if number < 0:
+            count_neg += 1
+      number = int(input())
+print('Произведение кол-ва положительных и отрицательных чисел равно', count_pos * count_neg)
