@@ -1,7 +1,8 @@
 print('Введите натуральное число:')
-number = int(input())
+number_input = int(input())
+number = number_input
 counter = 0
 while number % 2 == 0:
       counter += 1
       number = number / 2
-print(number, 'делится на 2 нацело', counter, 'раз')
+print(number_input, 'делится на 2 нацело', counter, 'раз')
