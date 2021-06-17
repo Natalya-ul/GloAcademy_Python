@@ -1,0 +1,15 @@
+from math import inf
+print('Введите натуральное число:')
+number = int(input())
+max_digit = 0
+min_digit = inf
+total = 0
+while number != 0:
+      digit = number % 10
+      if digit > max_digit:
+            max_digit = digit
+      if digit < min_digit:
+            min_digit = digit
+      number = number // 10
+print('Минимальная цифра равна', max_digit)
+print('Максимальная цифра равна', min_digit)
