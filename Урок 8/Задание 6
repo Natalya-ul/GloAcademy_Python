@@ -1,0 +1,9 @@
+print('Введите последовательность целых чисел (завершается числом 0):')
+number = int(input())
+total = 0
+counter = 0
+while number != 0:
+      total += number
+      counter += 1
+      number = int(input())
+print('Среднее арифметическое чисел равно', total / counter)
