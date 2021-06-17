@@ -1,0 +1,12 @@
+print('Введите натуральное число:')
+number = int(input())
+number_while = number
+total = 0
+while number_while != 0:
+      last_digit = number_while % 10
+      total += last_digit
+      number_while = number_while // 10
+if number % total == 0:
+      print('YES - данное число является замечательным')
+else:
+      print('NO - данное число не является замечательным')
