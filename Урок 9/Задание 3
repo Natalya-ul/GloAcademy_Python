@@ -5,6 +5,7 @@ while number != 0:
     digit = number % 10
     if digit == 1:
         flag = 1
+        break
     number = number // 10
 if flag == 1:
     print('YES - введенное число содержит цифру 1')
