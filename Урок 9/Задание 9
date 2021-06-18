@@ -4,7 +4,7 @@ number = number_input
 total = 0
 while number > 9:
     total = 0
-    while number % 10 != 0:
+    while number != 0:
         digital = number % 10
         total += digital
         number = number // 10
