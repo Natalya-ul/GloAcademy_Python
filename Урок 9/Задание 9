@@ -9,4 +9,4 @@ while number > 9:
         total += digital
         number = number // 10
     number = total
-print('Цифровой корень числа', number_input, 'равен', total)
+print('Цифровой корень числа', number_input, 'равен', number)
