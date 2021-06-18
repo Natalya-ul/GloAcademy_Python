@@ -1,0 +1,12 @@
+print('Введите натуральное числo:')
+number = int(input())
+flag = 0
+while number != 0:
+    digit = number % 10
+    if digit == 1:
+        flag = 1
+    number = number // 10
+if flag == 1:
+    print('YES - введенное число содержит цифру 1')
+else:
+    print('NO  введенное число не содержит цифру 1')
