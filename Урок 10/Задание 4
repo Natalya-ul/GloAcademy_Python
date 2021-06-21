@@ -1,0 +1,9 @@
+print('Введите символ:')
+symbol = input()
+if 65 <= ord(symbol) <= 122:
+    if symbol.islower() == True:
+        print(symbol.upper())
+    else:
+        print(symbol.lower())
+else:
+    print(symbol)
