@@ -1,0 +1,7 @@
+print('Введите строку:')
+text = input()
+counter = 0
+for c in text:
+    if c == ' ':
+        counter += 1
+print(f'Кол-во слов в строке: {counter + 1}')
