@@ -1,0 +1,6 @@
+print('Введите строку:')
+text = input()
+print('В данной строке содержатся следующие цифры:')
+for c in text:
+    if c.isdigit() == True:
+        print(c, end='')
