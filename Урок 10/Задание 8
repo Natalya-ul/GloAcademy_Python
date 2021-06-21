@@ -1,0 +1,7 @@
+print('Введите строку:')
+text = input()
+counter = 0
+for i in range(0, len(text) - 1):
+    if ord(text[i]) == ord(text[i + 1]):
+        counter += 1
+print(f'В введенной строке {counter} одинаковых соседних символа.')
