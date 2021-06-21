@@ -1,0 +1,10 @@
+print('Введите строчную букву латинского алфавита:')
+letter1 = input()
+print('Введите еще одну строчную букву латинского алфавита:')
+letter2 = input()
+if ord(letter2) > ord(letter1):
+    for i in range(ord(letter1), ord(letter2) + 1):
+        print(chr(i), end=' ')
+else:
+    for i in range(ord(letter2), ord(letter1) + 1):
+        print(chr(i), end=' ')
