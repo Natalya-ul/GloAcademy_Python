@@ -1,0 +1,7 @@
+print('Введите фамилию:')
+surname = input()
+print('Введите имя:')
+name = input()
+print('Введите фамилию:')
+patronymic = input()
+print(f'{surname} {name[0]}.{patronymic[0]}.')
