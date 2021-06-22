@@ -1,0 +1,7 @@
+print('Введите строкy текста, содержащую символы, отделенные символом пробела')
+list_num = input().split()
+list_num_single = []
+for c in list_num:
+    if list_num.count(c) == 1:
+        list_num_single.append(c)
+print('Элементы, которые встречаются в списке только один раз:', *list_num_single)
