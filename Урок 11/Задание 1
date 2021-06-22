@@ -1,0 +1,12 @@
+list = []
+print('Введите кол-во строк:')
+number_str = int(input())
+for i in range(1, number_str + 1):
+    print(f'Введите строку {i} в банк слов:')
+    list.append(input())
+print('Введите поисковый запрос:')
+search = input()
+print('Результат поиска: ')
+for i in range(len(list)):
+    if search.lower() in list[i].lower():
+        print(list[i])
