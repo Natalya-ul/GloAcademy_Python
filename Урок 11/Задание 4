@@ -1,0 +1,8 @@
+print('Введите строкy текста, содержащую натуральные числа, отделенные символом пробела')
+list_num = input().split()
+counter = 0
+for i in range(len(list_num)):
+    for n in range(i + 1, len(list_num)):
+        if list_num[i] == list_num[n]:
+            counter += 1
+print(f'В строке {counter} пар элементов, равных друг другу.')
