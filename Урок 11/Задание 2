@@ -1,0 +1,5 @@
+print('Введите имя файла в операционной системе Windows:')
+text = input()
+list = text.split(chr(92))
+print('Вывод строки по частям:')
+print(*list, sep='\n')
