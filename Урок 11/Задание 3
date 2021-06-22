@@ -1,0 +1,11 @@
+print('Введите строкy текста, содержащую 4 целых числа разделенных точкой:')
+ip_adr = input()
+list_ip = ip_adr.split('.')
+counter = 0
+for c in list_ip:
+    if 0 <= int(c) <= 250:
+        counter += 1
+if counter == 4:
+    print('Введенная строка текста является ip-адресом')
+else:
+    print('Введенная строка текста не является ip-адресом')
