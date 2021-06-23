@@ -1,0 +1,16 @@
+def star_date(date):
+    date_list = date_input.split('.')
+    for i in range(len(date_list)):
+        date_list[i] = int(date_list[i])
+    if date_list[0] * date_list[1] == date_list[2] % 100:
+        flag = 1
+    else:
+        flag = 0
+    return(flag)
+
+print('Введите дату (строковое представление): ')
+date_input = input()
+if star_date(date_input) == 1:
+    print('Звездная дата!')
+else:
+    print('Введенная дата не является Звездной датой')
