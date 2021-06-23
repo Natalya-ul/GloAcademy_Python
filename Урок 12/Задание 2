@@ -1,7 +1,7 @@
 def list_max(list):
-            for i in range(len(list)):
-                        list[i] = int(list[i])
-            return max(list)
+    for i in range(len(list)):
+        list[i] = int(list[i])
+    return max(list)
 print('Введите через пробел элементы первого списка: ')
 list1 = input().split()
 print('Введите через пробел элементы второго списка: ')
