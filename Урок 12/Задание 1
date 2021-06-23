@@ -1,0 +1,8 @@
+def num_rank(number):
+    return len(number)
+
+print('Введите первое натуральное число: ')
+number1 = input()
+print('Введите второе натуральное число: ')
+number2 = input()
+print('Произведение разрядов введеных числел равно:', num_rank(number1) * num_rank(number2))
