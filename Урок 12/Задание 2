@@ -1,0 +1,10 @@
+def list_int(list):
+            for i in range(len(list)):
+                        list[i] = int(list[i])
+            return max(list)
+
+print('Введите через пробел элементы первого списка: ')
+list1 = input().split()
+print('Введите через пробел элементы второго списка: ')
+list2 = input().split()
+print('Произведение двух максимальных элементов списков равно:', list_int(list1) * list_int(list2))
