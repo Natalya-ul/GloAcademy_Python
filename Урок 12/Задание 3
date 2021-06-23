@@ -1,4 +1,4 @@
-def list_int(num_month):
+def days_month(num_month):
             day_30 = [4, 6, 9, 11]
             day_31 = [1, 3, 5, 7, 8, 10, 12]
             day_29 = [2]
@@ -12,4 +12,4 @@ def list_int(num_month):
 
 print('Введите номер месяца: ')
 number = int(input())
-print(f'Количество дней в месяце: {list_int(number)}')
+print(f'Количество дней в месяце: {days_month(number)}')
