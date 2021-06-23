@@ -1,6 +1,6 @@
 def cost_products(num_products):
-    if number > 0:
-        cost = 100 + 50 * (number - 1)
+    if num_products > 0:
+        cost = 100 + 50 * (num_products - 1)
     else:
         cost = 0
     return(cost)
