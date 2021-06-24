@@ -1,0 +1,40 @@
+import random
+
+def int_valid(input_number, border):
+    if input_number.isdigit():
+        user_number = int(input_number)
+        if user_number >= 1 and user_number <= border:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+while True:
+    print('Добро пожаловать в игру "Угадай число"!')
+    print('Укажите правую границу для случайного выбора числа:')
+    r_border = int(input())
+    secret_number = random.randint(1, r_border)
+    print('Укажите минимальное кол-во попыток:')
+    counter_min = int(input())
+    counter = 0
+    
+    while True:
+        print(f'Введите число от 1 до {r_border}:')
+        input_number = input()
+        if not int_valid(input_number, r_border):
+            continue
+
+        user_number = int(input_number)
+        if secret_number > user_number:
+            counter += 1
+            print('Загаданное число больше, чем введенное вами число.')
+        elif secret_number < user_number:
+            counter += 1
+            print('Загаданное число меньше, чем введенное вами число.')
+        else:
+            counter += 1
+            print(f'Поздравляем! Вы угадали загаданное число. Кол-во ваших попыток: {counter}.', f'Минимальное кол-во попыток: {counter_min}', sep='\n')
+            print()
+            print('Начинаем новую игру!')
+            break
