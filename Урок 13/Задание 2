@@ -10,10 +10,17 @@ def int_valid(input_number):
     else:
         return False
 
+def answer_valid(new_game_ans):
+    if new_game_ans == 'yes' or new_game_ans == 'no':
+        return True
+    else:
+        return False
+
 while True:
     secret_number = random.randint(1, 100)
     print('Добро пожаловать в игру "Угадай число"!')
     counter = 0
+    flag = 0
     while True:
         print('Введите число от 1 до 100:')
         input_number = input()
@@ -31,5 +38,14 @@ while True:
             counter += 1
             print(f'Поздравляем! Вы угадали загаданное число. Кол-во попыток: {counter}')
             print()
-            print('Начинаем новую игру!')
-            break
+            
+            print('Хотите начать новую игру? (введите "yes" или "no")')
+            new_game = input()
+            while not answer_valid(new_game):
+                print('Хотите начать новую игру? (введите "yes" или "no")')
+                new_game = input()
+            if new_game == 'no':
+                flag = 1
+                break
+    if flag == 1:
+        break
