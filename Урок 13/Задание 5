@@ -1,0 +1,26 @@
+import math
+
+def answer_valid(answer_input):
+    if answer_input == '>' or answer_input == '<' or answer_input == '=':
+        return True
+    else:
+        return False
+    
+print('Укажите правую границу для случайного выбора числа:')
+border = int(input())
+number = int(border / 2)
+step = number
+while True:
+    step = math.ceil(step / 2)
+    print(f'Загаданное число {number}? (Введите ">", "<" или "=")')
+    answer = input()
+    if not answer_valid(answer):
+        continue
+    
+    if answer == '>':
+        number = math.ceil(number + step)
+    elif answer == '<':
+        number = math.ceil(number - step)
+    else:
+        print('Поздравляю! Вы угадали число.')
+        break
