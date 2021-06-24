@@ -1,9 +1,9 @@
 import random
 
-def int_valid(input_number):
+def int_valid(input_number, border):
     if input_number.isdigit():
         user_number = int(input_number)
-        if user_number >= 1 and user_number <= 100:
+        if user_number >= 1 and user_number <= border:
             return True
         else:
             return False
