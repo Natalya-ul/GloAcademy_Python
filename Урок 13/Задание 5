@@ -6,7 +6,7 @@ def answer_valid(answer_input):
     else:
         return False
     
-print('Укажите правую границу для случайного выбора числа:')
+print('Укажите правую границу для выбора числа:')
 border = int(input())
 number = int(border / 2)
 step = number
