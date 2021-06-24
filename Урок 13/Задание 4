@@ -12,6 +12,7 @@ def int_valid(input_number, border):
         return False
 
 def answer_valid(new_game_ans):
+    new_game_ans = new_game_ans.lower()
     if new_game_ans == 'yes' or new_game_ans == 'no':
         return True
     else:
