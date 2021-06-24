@@ -1,4 +1,5 @@
 import random
+from math import log, floor
 
 def int_valid(input_number, border):
     if input_number.isdigit():
@@ -10,19 +11,24 @@ def int_valid(input_number, border):
     else:
         return False
 
+def answer_valid(new_game_ans):
+    if new_game_ans == 'yes' or new_game_ans == 'no':
+        return True
+    else:
+        return False
+
 while True:
     print('Добро пожаловать в игру "Угадай число"!')
     print('Укажите правую границу для случайного выбора числа:')
-    r_border = int(input())
-    secret_number = random.randint(1, r_border)
-    print('Укажите минимальное кол-во попыток:')
-    counter_min = int(input())
+    number_border = int(input())
+    secret_number = random.randint(1, number_border)
     counter = 0
-    
+    counter_min = floor(log(number_border, 2))
+    flag = 0
     while True:
-        print(f'Введите число от 1 до {r_border}:')
+        print(f'Введите число от 1 до {number_border}:')
         input_number = input()
-        if not int_valid(input_number, r_border):
+        if not int_valid(input_number, number_border):
             continue
 
         user_number = int(input_number)
@@ -34,7 +40,13 @@ while True:
             print('Загаданное число меньше, чем введенное вами число.')
         else:
             counter += 1
-            print(f'Поздравляем! Вы угадали загаданное число. Кол-во ваших попыток: {counter}.', f'Минимальное кол-во попыток: {counter_min}', sep='\n')
-            print()
-            print('Начинаем новую игру!')
+            print(f'Поздравляем! Вы угадали загаданное число. Кол-во попыток: {counter}', f'Минимальное кол-во попыток: {counter_min}', sep='\n')
             break
+
+    print('Хотите начать новую игру? (введите "yes" или "no")')
+    new_game = input()
+    while not answer_valid(new_game):
+        print('Хотите начать новую игру? (введите "yes" или "no")')
+        new_game = input()
+    if new_game == 'no':
+        break
