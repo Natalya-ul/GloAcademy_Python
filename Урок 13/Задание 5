@@ -22,5 +22,5 @@ while True:
     elif answer == '<':
         number = math.ceil(number - step)
     else:
-        print('Поздравляю! Вы угадали число.')
+        print('Число угадано верно!')
         break
