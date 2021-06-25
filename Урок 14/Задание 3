@@ -4,7 +4,7 @@ def ask_question(question):
     print(question, 'Введите Да или Нет')
     answer = input().lower()
     while answer != 'да' and answer != 'нет':
-        print('Данные введены некорректно. Введите Да или Нет')
+        print('Данные введены некорректно! Возможные варианты ввода: Да или Нет')
         answer = input().lower()
     if answer == 'да':
         return True
@@ -14,7 +14,7 @@ def ask_question(question):
 def int_valid(number):
     if number.isdigit() == True:
         user_number = int(number)
-        if 1 <= user_number <= 100:
+        if user_number > 0:
             return True
         else:
             return False
@@ -35,14 +35,14 @@ while True:
     print('Введите кол-во паролей, которые нужно сгенерировать')
     number_passwords = input()
     while not int_valid(number_passwords):
-        print('Данные введены некорректно. Введите целое число от 1 до 100')
+        print('Данные введены некорректно! Возможные варианты ввода: целое число больше 0')
         number_passwords = input()
     number_passwords = int(number_passwords)  
 
     print('Введите длину пароля:')
     lenght = input()
     while not int_valid(lenght):
-        print('Данные введены некорректно. Введите целое число от 1 до 100')
+        print('Данные введены некорректно! Возможные варианты ввода: целое число больше 0')
         lenght = input()
     lenght = int(lenght)
 
