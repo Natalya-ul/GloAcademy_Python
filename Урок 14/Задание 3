@@ -12,15 +12,13 @@ def ask_question(question):
         return False
 
 def int_valid(number):
+    while number.isdigit() == False or int(number) <= 0 or int(number) > 100:
+        print('Данные введены некорректно! Возможные варианты ввода: целое число от 1 до 100')
+        number = input()
     if number.isdigit() == True:
         user_number = int(number)
         if 1 <= user_number <= 100:
-            return True
-        else:
-            return False
-    else:
-        return False
-
+            return user_number
 
 def generate_password(length, chars):
     password = ''
@@ -33,18 +31,12 @@ def generate_password(length, chars):
 while True:
     print('Привет!Я генератор паролей. \nЯ задам тебе пару уточняющих вопросов, на основании которых сгенерирую пароль. \nДавай начнем!')
     print('Введите кол-во паролей, которые нужно сгенерировать')
-    number_passwords = input()
-    while not int_valid(number_passwords):
-        print('Данные введены некорректно! Возможные варианты ввода: целое число от 1 до 100')
-        number_passwords = input()
-    number_passwords = int(number_passwords)
+    number_passwords_input = input()
+    number_passwords = int_valid(number_passwords_input)
 
     print('Введите длину пароля:')
-    lenght = input()
-    while not int_valid(lenght):
-        print('Данные введены некорректно! Возможные варианты ввода: целое число от 1 до 100')
-        lenght = input()
-    lenght = int(lenght)
+    lenght_input = input()
+    lenght = int_valid(lenght_input)
 
     digits_enabled = ask_question('Включать ли цифры?')
     latin_lowercase_enabled = ask_question('Включать ли строчные латинские буквы?')
@@ -81,4 +73,3 @@ while True:
     new_password = ask_question('Хотите сгенерировать новый пароль?')
     if not new_password:
         break
-
