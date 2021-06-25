@@ -38,14 +38,14 @@ while True:
     lenght_input = input()
     lenght = int_valid(lenght_input)
 
-    digits_enabled = ask_question('Включать ли цифры?')
-    latin_lowercase_enabled = ask_question('Включать ли строчные латинские буквы?')
-    latin_uppercase_enabled = ask_question('Включать ли заглавные латинские буквы?')
-    russian_lowercase_enabled = ask_question('Включать ли строчные русские буквы?')
-    russian_uppercase_enabled = ask_question('Включать ли заглавные русские буквы?')
-    punctuations_enabled = ask_question('Включать ли знаки препинания?')
-
-    for i in range(1, number_passwords + 1):
+    while True:
+        digits_enabled = ask_question('Включать ли цифры?')
+        latin_lowercase_enabled = ask_question('Включать ли строчные латинские буквы?')
+        latin_uppercase_enabled = ask_question('Включать ли заглавные латинские буквы?')
+        russian_lowercase_enabled = ask_question('Включать ли строчные русские буквы?')
+        russian_uppercase_enabled = ask_question('Включать ли заглавные русские буквы?')
+        punctuations_enabled = ask_question('Включать ли знаки препинания?')
+    
         enabled_chars = ''
         digits = '0123456789'
         latin_lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
@@ -53,23 +53,38 @@ while True:
         russian_lowercase_letters = 'абвгдежзиклмнопрстуфхцчшщъыьэюя'
         russian_uppercase_letters = 'АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ'
         punctuations = '!#$%^&*+-=?@_^'
-
+    
+        counter = 0
+        
         if digits_enabled:
             enabled_chars += digits
+            counter += 1
         if latin_lowercase_enabled:
             enabled_chars += latin_lowercase_letters
+            counter += 1
         if latin_uppercase_enabled:
             enabled_chars += latin_uppercase_letters
+            counter += 1
         if russian_lowercase_enabled:
             enabled_chars += russian_lowercase_letters
+            counter += 1
         if russian_uppercase_enabled:
             enabled_chars += russian_uppercase_letters
+            counter += 1
         if punctuations_enabled:
             enabled_chars += punctuations
+            counter += 1
+        if counter == 0:
+            print('Нет данных для генератора паролей! Ответьте на вопросы заново.')
+            print()
+        else:
+            break
+
+    for i in range(1, number_passwords + 1):
 
         password = generate_password(lenght, enabled_chars)
         print(f'Пароль № {i}: {password}')
 
-    new_password = ask_question('Хотите сгенерировать новый пароль?')
+    new_password=ask_question('Хотите сгенерировать новый пароль?')
     if not new_password:
         break
