@@ -1,3 +1,5 @@
+import random
+
 def ask_question(question):
     print(question, 'Введите Да или Нет')
     answer = input().lower()
@@ -10,17 +12,11 @@ def ask_question(question):
         return False
 
 def int_valid(number):
-    if number.isdigit():
-        user_number = int(number)
-        if user_number >= 1 and user_number <= 100:
-            return True
-        else:
-            print('Данные введены некорректно. Введите целое число от 1 до 100")')
-            return False
-    else:
+    while number.isdigit() == False or int(number) < 1 or int(number) > 100:
         print('Данные введены некорректно. Введите целое число от 1 до 100")')
-        return False
-
+        number = input()
+    return True
+    
 def generate_password(length, chars):
     password = ''
     for i in range(lenght):
@@ -33,13 +29,11 @@ while True:
     print('Привет!Я генератор паролей. \nЯ задам тебе пару уточняющих вопросов, на основании которых сгенерирую пароль. \nДавай начнем!')
     print('Введите кол-во паролей, которые нужно сгенерировать')
     number_passwords = input()
-    while not int_valid(number_passwords):
-        number_passwords = input()
+    int_valid(number_passwords)
         
     print('Введите длину пароля:')
     lenght = input()
-    while not int_valid(lenght):
-        lenght = input()
+    int_valid(lenght)
 
     digits_enabled = ask_question('Включать ли цифры?')
     latin_lowercase_enabled = ask_question('Включать ли строчные латинские буквы?')
@@ -76,4 +70,6 @@ while True:
     new_password = ask_question('Хотите сгенерировать новый пароль?')
     if not new_password:
         break    
+
+  
 
