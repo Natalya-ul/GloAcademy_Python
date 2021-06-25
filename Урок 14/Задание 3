@@ -12,11 +12,16 @@ def ask_question(question):
         return False
 
 def int_valid(number):
-    while number.isdigit() == False or int(number) < 1 or int(number) > 100:
-        print('Данные введены некорректно. Введите целое число от 1 до 100")')
-        number = input()
-    return True
-    
+    if number.isdigit() == True:
+        user_number = int(number)
+        if 1 <= user_number <= 100:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
 def generate_password(length, chars):
     password = ''
     for i in range(lenght):
@@ -29,11 +34,17 @@ while True:
     print('Привет!Я генератор паролей. \nЯ задам тебе пару уточняющих вопросов, на основании которых сгенерирую пароль. \nДавай начнем!')
     print('Введите кол-во паролей, которые нужно сгенерировать')
     number_passwords = input()
-    int_valid(number_passwords)
-        
+    while not int_valid(number_passwords):
+        print('Ошибка ввода. Введите число от 1 до 100')
+        number_passwords = input()
+    number_passwords = int(number_passwords)  
+
     print('Введите длину пароля:')
     lenght = input()
-    int_valid(lenght)
+    while not int_valid(lenght):
+        print('Ошибка ввода. Введите число от 1 до 100')
+        lenght = input()
+    lenght = int(lenght)
 
     digits_enabled = ask_question('Включать ли цифры?')
     latin_lowercase_enabled = ask_question('Включать ли строчные латинские буквы?')
@@ -42,7 +53,7 @@ while True:
     russian_uppercase_enabled = ask_question('Включать ли заглавные русские буквы?')
     punctuations_enabled = ask_question('Включать ли знаки препинания?')
 
-    for i in range(1, number_passwords + 1):
+    for i in range(1, int(number_passwords) + 1):
         enabled_chars = ''
         digits = '0123456789'
         latin_lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
@@ -63,13 +74,10 @@ while True:
             enabled_chars += russian_uppercase_letters
         if punctuations_enabled:
             enabled_chars += punctuations
-                
+
         password = generate_password(lenght, enabled_chars)
         print(f'Пароль № {i}: {password}')
     
     new_password = ask_question('Хотите сгенерировать новый пароль?')
     if not new_password:
         break    
-
-  
-
