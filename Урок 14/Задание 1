@@ -1,0 +1,55 @@
+import random
+
+def ask_question(question):
+    print(question, 'Введите Да или Нет')
+    answer = input()
+    if answer.lower() == 'Да'.lower():
+        return True
+    else:
+        return False
+
+def generate_password(length, chars):
+    password = ''
+    for i in range(lenght):
+        random_index = random.randint(0, len(chars) - 1)
+        password += chars[random_index]
+    return password
+    
+while True:
+    print('Привет!Я генератор паролей. \nЯ задам тебе пару уточняющих вопросов, на основании которых сгенерирую пароль. \nДавай начнем!')
+    print('Введите длину пароля:')
+    lenght = int(input())
+    digits_enabled = ask_question('Включать ли цифры?')
+    latin_lowercase_enabled = ask_question('Включать ли строчные латинские буквы?')
+    latin_uppercase_enabled = ask_question('Включать ли заглавные латинские буквы?')
+    russian_lowercase_enabled = ask_question('Включать ли строчные русские буквы?')
+    russian_uppercase_enabled = ask_question('Включать ли заглавные русские буквы?')
+    punctuations_enabled = ask_question('Включать ли знаки препинания?')
+    
+    enabled_chars = ''
+    digits = '0123456789'
+    latin_lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
+    latin_uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    russian_lowercase_letters = 'абвгдежзиклмнопрстуфхцчшщъыьэюя'
+    russian_uppercase_letters = 'АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЫЬЭЮЯ'
+    punctuations = '!#$%^&*+-=?@_^'
+    
+    if digits_enabled:
+        enabled_chars += digits
+    if latin_lowercase_enabled:
+        enabled_chars += latin_lowercase_letters
+    if latin_uppercase_enabled:
+        enabled_chars += latin_uppercase_letters
+    if russian_lowercase_enabled:
+        enabled_chars += russian_lowercase_letters
+    if russian_uppercase_enabled:
+        enabled_chars += russian_uppercase_letters
+    if punctuations_enabled:
+        enabled_chars += punctuations
+            
+    password = generate_password(lenght, enabled_chars)
+    print(password)
+    
+    new_password = ask_question('Хотите сгенерировать новый пароль?')
+    if not new_password:
+        break    
