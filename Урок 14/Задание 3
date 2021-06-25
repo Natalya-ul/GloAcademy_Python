@@ -35,14 +35,14 @@ while True:
     print('Введите кол-во паролей, которые нужно сгенерировать')
     number_passwords = input()
     while not int_valid(number_passwords):
-        print('Ошибка ввода. Введите число от 1 до 100')
+        print('Данные введены некорректно. Введите целое число от 1 до 100')
         number_passwords = input()
     number_passwords = int(number_passwords)  
 
     print('Введите длину пароля:')
     lenght = input()
     while not int_valid(lenght):
-        print('Ошибка ввода. Введите число от 1 до 100')
+        print('Данные введены некорректно. Введите целое число от 1 до 100')
         lenght = input()
     lenght = int(lenght)
 
