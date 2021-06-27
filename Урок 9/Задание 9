@@ -2,7 +2,7 @@ print('Введите натуральное числo:')
 number_input = int(input())
 number = number_input
 total = 0
-while number > 9:
+while number >= 9:
     total = 0
     while number != 0:
         digital = number % 10
