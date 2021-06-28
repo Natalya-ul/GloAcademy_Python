@@ -21,7 +21,7 @@ def ask_question(question):
         return False
             
 while True:
-    secret_word = 'академия'
+    secret_word = 'академия'.lower()
     user_word = '********'
     counter = 0
     while user_word != secret_word:
