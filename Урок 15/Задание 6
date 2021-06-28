@@ -22,11 +22,12 @@ def ask_question(question):
             
 while True:
     print('Добро пожаловать в игру "Поле чудес"! Вам необходимо угадать слово.')
-    secret_word = 'академия'.lower()
-    secret_word_question = 'Это слово обозначает научную организацию (учреждение, общество).'
-    user_word = '********'
-    counter = 0
+    secret_word_question = 'Вопрос: Что использовали в Китае для глажки белья вместо утюга?'
+    secret_word = 'сковорода'.lower()
     print(secret_word_question)
+    user_word = '*********'
+    print(user_word)
+    counter = 0
     while user_word != secret_word:
         print('Введите букву:')
         user_char = input().lower()
