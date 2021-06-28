@@ -1,4 +1,8 @@
+import random
+
 russian_lowercase_letters = 'абвгдежзиклмнопрстуфхцчшщъыьэюя'
+secret_questions_list = ['Белый нагрудник на мужской сорочке', 'Единственное ядовитое млекопитающее в мире', 'Какая трава была названа индейцами «следом белого человека»', 'Противовес «естественного отбора», созданный человеком']
+secret_answers_list = ['манишка', 'утконос', 'подорожник', 'селекция']
 
 def update_user_word(secret_word, user_word, char):
     new_user_word = ''
@@ -22,11 +26,15 @@ def ask_question(question):
             
 while True:
     print('Добро пожаловать в игру "Поле чудес"! Вам необходимо угадать слово.')
-    secret_word = 'академия'.lower()
-    secret_word_question = 'Это слово обозначает научную организацию (учреждение, общество).'
+    secret_word_number = random.randint(0, len(secret_questions_list) - 1)
+    secret_question = secret_questions_list[secret_word_number]
+    secret_word = secret_answers_list[secret_word_number]
+    
+    print(f'Вопрос. {secret_question}')
+    
     user_word = '*' * len(secret_word)
+    print(user_word)
     counter = 0
-    print(secret_word_question)
     while user_word != secret_word:
         print('Введите букву:')
         user_char = input().lower()
