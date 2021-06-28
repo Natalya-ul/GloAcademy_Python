@@ -21,6 +21,7 @@ def ask_question(question):
 while True:
     secret_word = 'академия'
     user_word = '********'
+    print(user_word)
     
     while user_word != secret_word:
         print('Введите букву:')
