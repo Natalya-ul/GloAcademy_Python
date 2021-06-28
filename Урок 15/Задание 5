@@ -23,6 +23,7 @@ def ask_question(question):
 while True:
     secret_word = 'академия'.lower()
     user_word = '********'
+    print(user_word)
     counter = 0
     while user_word != secret_word:
         print('Введите букву:')
@@ -31,7 +32,7 @@ while True:
             print('Ошибка ввода! Введите одну буква русского алфавита.')
             continue
         if user_char in user_word:
-            print('Данная буква уже была введена ранее. Введите другую букву.')
+            print('Данная буква уже была введена ранее. Введите другой вариант.')
             continue
     
         new_user_word = update_user_word(secret_word, user_word, user_char)
