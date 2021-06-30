@@ -36,7 +36,7 @@ def ask_question(question):
     
 while True:
     secret_word = generate_secret_word()
-    print(secret_word)
+    print('Добро пожаловать в игру "Быки и коровы"')
     
     while True:
         print('Найди число, загаданное компьютером!')
