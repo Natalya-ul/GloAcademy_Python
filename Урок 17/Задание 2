@@ -50,7 +50,6 @@ def str_valid():
 
 while True:
     secret_word = generate_secret_word()
-    print(secret_word)
     print('Добро пожаловать в игру "Быки и коровы"')
     print('Найди число, загаданное компьютером!')
     
