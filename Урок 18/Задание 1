@@ -1,0 +1,33 @@
+def ask_question(question):
+    print(question, 'Введите Да или Нет.')
+    answer = input().lower()
+    while answer != 'да' and answer != 'нет':
+        print('Ответ некорректный! Возможные варианты ввода: Да или Нет')
+        answer = input().lower()
+    if answer == 'да':
+        return True
+    else:
+        return False
+
+questions = [
+    'Сколько будет два плюс два, умноженное на 2?',
+    'Бревно надо распилить на 10 частей. Сколько надо сделать распилов?',
+    'На двух руках 10 пальцев. Сколько пальцев на 5 руках?',
+    'Укол делают каждые пол часа. Сколько нужно минут для трех уколов?',
+    'Пять свечей горело, две потухло. Сколько свечей осталось?'
+]
+answers = [6, 9, 25, 60, 2]
+
+while True:
+    count_right_answers = 0
+
+    for i in range(len(questions)):
+        print(questions[i])
+        user_answer = int(input())
+        right_answer = answers[i]
+        if user_answer == right_answer:
+            count_right_answers += 1
+
+    print('Количество правильных ответов:', count_right_answers)
+    if not ask_question('Хотите начать тест заново?'):
+            break    
