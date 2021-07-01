@@ -30,4 +30,4 @@ while True:
 
     print('Количество правильных ответов:', count_right_answers)
     if not ask_question('Хотите начать тест заново?'):
-            break    
+        break
