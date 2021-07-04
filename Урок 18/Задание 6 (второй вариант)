@@ -1,0 +1,60 @@
+import random
+
+def ask_question(question):
+    print(question, 'Введите Да или Нет.')
+    answer = input().lower()
+    while answer != 'да' and answer != 'нет':
+        print('Ответ некорректный! Возможные варианты ввода: Да или Нет')
+        answer = input().lower()
+    if answer == 'да':
+        return True
+    else:
+        return False
+
+def determine_rating(count_right_answers):
+    index = count_right_answers_list.index(count_right_answers)
+    rating = rating_list[index]
+    return rating
+
+def int_valid():
+    user_answer = input()
+    while not user_answer.isdigit():
+        print('Ошибка ввода. Ответ должен представлять собой целое число')
+        user_answer = input()
+    return int(user_answer)
+
+count_right_answers_list = [5, 4, 3, 2, 1, 0]
+rating_list = ['Гений', 'Талант', 'Нормальный', 'Дурак', 'Кретин', 'Идиот']
+
+
+while True:
+    print('Введите ваше имя:')
+    name = input()
+    count_right_answers = 0
+    
+    questions = [
+        'Сколько будет два плюс два, умноженное на 2?',
+        'Бревно надо распилить на 10 частей. Сколько надо сделать распилов?',
+        'На двух руках 10 пальцев. Сколько пальцев на 5 руках?',
+        'Укол делают каждые пол часа. Сколько нужно минут для трех уколов?',
+        'Пять свечей горело, две потухло. Сколько свечей осталось?'
+    ]
+    answers = [6, 9, 25, 60, 2]    
+
+
+    for i in range(len(questions)):
+        random_index = random.randint(0, len(questions) - 1)
+
+        print(f'Вопрос №{i + 1}. {questions[random_index]}')
+        user_answer= int_valid()
+        right_answer= answers[random_index]
+        if user_answer == right_answer:
+            count_right_answers += 1
+        questions.pop(random_index)
+        answers.pop(random_index)
+
+    rating = determine_rating(count_right_answers)
+
+    print(f'{name}, количество ваших правильных ответов - {count_right_answers}. Ваш диагноз: {rating}.')
+    if not ask_question('Хотите начать тест заново?'):
+        break
