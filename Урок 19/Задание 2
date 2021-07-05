@@ -1,5 +1,4 @@
 import random
-from math import ceil, floor
 
 def get_questions():
     questions = [
@@ -33,7 +32,10 @@ def int_r(num):
 def calculate_result(count_right_answers, amount_questions):
     results_list = ['Идиот', 'Кретин', 'Дурак', 'Нормальный', 'Талант', 'Гений']
     index = int_r(len(results_list) / amount_questions * count_right_answers)
-    result = results_list[index - 1]
+    if index == 0:
+        result = results_list[index]
+    else:
+        result = results_list[index - 1]
     return result
 
 def int_valid():
@@ -44,8 +46,10 @@ def int_valid():
     return int(user_answer)
 
 while True:
+
+    
     print('Введите ваше имя:')
-    name = input()
+    user_name = input()
     count_right_answers = 0
     questions = get_questions()
     amount_questions = len(questions)
@@ -55,7 +59,7 @@ while True:
         random_index = random.randint(0, len(questions) - 1)
 
         print(f'Вопрос №{i + 1}. {questions[random_index]}')
-        user_answer= int_valid()
+        user_answer = int_valid()
         right_answer= answers[random_index]
         if user_answer == right_answer:
             count_right_answers += 1
@@ -64,8 +68,7 @@ while True:
         answers.pop(random_index)
 
     result = calculate_result(count_right_answers, amount_questions)
+    print(f'{user_name}, количество ваших правильных ответов - {count_right_answers}. Ваш диагноз: {result}.')
 
-    print(f'{name}, количество ваших правильных ответов - {count_right_answers}. Ваш диагноз: {result}.')
-    
     if not ask_question('Хотите начать тест заново?'):
         break
