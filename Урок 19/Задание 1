@@ -1,0 +1,64 @@
+import random
+
+def get_questions():
+    questions = [
+        'Сколько будет два плюс два, умноженное на 2?',
+        'Бревно надо распилить на 10 частей. Сколько надо сделать распилов?',
+        'На двух руках 10 пальцев. Сколько пальцев на 5 руках?',
+        'Укол делают каждые пол часа. Сколько нужно минут для трех уколов?',
+        'Пять свечей горело, две потухло. Сколько свечей осталось?'
+    ]
+    return questions
+
+def get_answers():
+    answers = [6, 9, 25, 60, 2]
+    return answers
+
+def ask_question(question):
+    print(question, 'Введите Да или Нет.')
+    answer = input().lower()
+    while answer != 'да' and answer != 'нет':
+        print('Ответ некорректный! Возможные варианты ввода: Да или Нет')
+        answer = input().lower()
+    if answer == 'да':
+        return True
+    else:
+        return False
+
+def calculate_result(count_right_answers):
+    results_list = ['Идиот', 'Кретин', 'Дурак', 'Нормальный', 'Талант', 'Гений']
+    return results_list[count_right_answers]
+
+def int_valid():
+    user_answer = input()
+    while not user_answer.isdigit():
+        print('Ошибка ввода. Ответ должен представлять собой целое число')
+        user_answer = input()
+    return int(user_answer)
+
+while True:
+    print('Введите ваше имя:')
+    name = input()
+    count_right_answers = 0
+
+    questions = get_questions()
+    answers = get_answers()
+
+    for i in range(len(questions)):
+        random_index = random.randint(0, len(questions) - 1)
+
+        print(f'Вопрос №{i + 1}. {questions[random_index]}')
+        user_answer= int_valid()
+        right_answer= answers[random_index]
+        if user_answer == right_answer:
+            count_right_answers += 1
+            
+        questions.pop(random_index)
+        answers.pop(random_index)
+
+    result = calculate_result(count_right_answers)
+
+    print(f'{name}, количество ваших правильных ответов - {count_right_answers}. Ваш диагноз: {result}.')
+    
+    if not ask_question('Хотите начать тест заново?'):
+        break
