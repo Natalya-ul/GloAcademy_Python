@@ -46,7 +46,7 @@ def int_valid():
     return int(user_answer)
 
 file = open('my-test.txt', 'w')
-file.write(f'Имя       Кол-во правильных ответов Результат \n')
+file.write('Имя,Кол-во правильных ответов,Результат\n')
 file.close() 
 
 while True:
@@ -74,7 +74,7 @@ while True:
     print(f'{user_name}, количество ваших правильных ответов - {count_right_answers}. Ваш диагноз: {result}.')
 
     file = open('my-test.txt', 'a')
-    file.write(f'{user_name:10}{count_right_answers:25} {result:10}\n')
+    file.write(f'{user_name},{count_right_answers},{result:10}\n')
     file.close()    
 
     if not ask_question('Хотите начать тест заново?'):       
@@ -82,6 +82,8 @@ while True:
     
 if ask_question('Хотите вывести результаты?'):
     file = open('my-test.txt', 'r')
-    read_file = file.read()
-    print(read_file)
-    file.close()   
+    read_file = file.readlines()
+    for i in read_file:
+        str_data = i.split(',')
+        print(f'{str_data[0]:10}{str_data[1]:26}{str_data[2]:10}')
+    file.close()
