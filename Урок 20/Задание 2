@@ -24,8 +24,10 @@ class User:
 
 class UsersResultStorage:
     def safe_user_result(user_name, count_right_answers, result):
-        str_safe_result = (f'{user_name}#{count_right_answers}#{result}\n')
-        return str_safe_result
+        file_name = 'results.txt'
+        file = open(file_name, 'a')
+        file.write(f'{user_name}#{count_right_answers}#{result}\n')
+        file.close()
 
     def show_user_results():
         file_name = 'results.txt'
@@ -43,7 +45,11 @@ class FileSystemWork:
     def safe_info(file_name, info):
         file = open(file_name, 'a')
         file.write(info)
-        file.close()     
+        file.close()
+        
+    def read_info(file_name):
+        file = open(file_name, 'r')
+        file.close()
 
 def ask_question(question):
     print(question, 'Введите Да или Нет.')
@@ -92,7 +98,7 @@ while True:
     print(f'{User.user_name}, количество ваших правильных ответов - {User.count_right_answers}. Ваш диагноз: {User.result}.')
     
 
-    FileSystemWork.safe_info('results.txt', UsersResultStorage.safe_user_result(User.user_name, User.count_right_answers, User.result))
+    UsersResultStorage.safe_user_result(User.user_name, User.count_right_answers, User.result)
 
     if not ask_question('Хотите начать тест заново?'):       
         break
