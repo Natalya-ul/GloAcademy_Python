@@ -11,16 +11,15 @@ class FileProvider:
     def append(self, path, data):
         file = open(path, 'a')
         data = file.write(data)
-        file.close()
+        file.close()  
         
     def exist(self, path):
         return os.path.exists(path)
     
-        
 class Question:
     def __init__(self, text, answer):
         self.text = text
-        self.answer = answer
+        self.answer = int(answer)
 
 class QuestionsStorage:
     
@@ -61,7 +60,7 @@ class QuestionsStorage:
             question = Question(values[0], values[1])
             questions.append(question)
         return questions          
-        
+                
 class User:
     def __init__(self, name, count_right_answers=0, result='Неизвестно'):
         self.name = name
@@ -130,24 +129,27 @@ def get_user_answer():
         user_answer = input()
     return int(user_answer)
 
-def check_new_question():
+def question_list_text():
     questions = questionsStorage.read_all()
     questions_text = []
     for i in range(len(questions)):
-        questions_text.append(questions[i].text) 
-        
+        questions_text.append(questions[i].text)
+    return questions_text
+
+def check_new_question():
+    questions_text = question_list_text()
     while True:
         new_question = input()
         if new_question in questions_text:
             print('Такой вопрос уже существует, введите новый вопрос.')
             continue
-        elif len(new_question) <= 20: 
+        elif len(new_question) <= 10: 
             print('Очень маленькое кол-во символов.')
             continue
         else:
             break
-        return new_question
-    
+    return new_question
+        
 questionsStorage = QuestionsStorage()
 questionsStorage.base()
 usersResultStorage = UsersResultStorage()
@@ -169,6 +171,7 @@ questions = questionsStorage.read_all()
 
 while True:
     count_questions = len(questions)
+    questions = questionsStorage.read_all()
 
     print('Введите ваше имя:')
     user_name = input()
@@ -196,4 +199,5 @@ while True:
         break
     
 if ask_question('Хотите вывести результаты?'):
+    show_user_results()езультаты?'):
     show_user_results()
