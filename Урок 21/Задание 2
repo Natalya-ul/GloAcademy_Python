@@ -23,7 +23,7 @@ class FileProvider:
 class Question:
     def __init__(self, text, answer):
         self.text = text
-        self.answer = answer
+        self.answer = int(answer)
 
 class QuestionsStorage:
     
@@ -169,7 +169,7 @@ def check_remove_question():
     questions_text = question_list_text()
     while True:
         remove_question = input()
-        if not new_question in questions_text:
+        if not remove_question in questions_text:
             print('Такого вопроса нет в списке. Попробуйте еще раз.')
             continue
         else:
@@ -205,6 +205,7 @@ questions = questionsStorage.read_all()
 
 while True:
     count_questions = len(questions)
+    questions = questionsStorage.read_all()
 
     print('Введите ваше имя:')
     user_name = input()
