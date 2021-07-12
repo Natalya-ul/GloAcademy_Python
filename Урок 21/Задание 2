@@ -185,6 +185,7 @@ while True:
     if ask_question('Хотите добавить вопрос?'):
         print('Введите текст вопроса:')
         new_question = check_new_question()
+        print('Вопрос добавлен')
         
         print('Введите ответ:')
         new_answer = get_user_answer()
@@ -198,14 +199,15 @@ while True:
         print('Введите текст вопроса:')
         remove_question = check_remove_question()
         questionsStorage.remove(remove_question)
+        print('Вопрос удален')
     else:
         break  
     
 questions = questionsStorage.read_all()
 
 while True:
-    count_questions = len(questions)
     questions = questionsStorage.read_all()
+    count_questions = len(questions)
 
     print('Введите ваше имя:')
     user_name = input()
