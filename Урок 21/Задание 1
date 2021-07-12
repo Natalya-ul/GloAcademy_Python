@@ -149,6 +149,7 @@ def check_new_question():
         return new_question
     
 questionsStorage = QuestionsStorage()
+questionsStorage.base()
 usersResultStorage = UsersResultStorage()
 
 
