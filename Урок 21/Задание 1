@@ -170,8 +170,9 @@ while True:
 questions = questionsStorage.read_all()
 
 while True:
-    count_questions = len(questions)
     questions = questionsStorage.read_all()
+    count_questions = len(questions)
+  
 
     print('Введите ваше имя:')
     user_name = input()
