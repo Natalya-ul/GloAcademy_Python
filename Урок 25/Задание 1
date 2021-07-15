@@ -1,0 +1,23 @@
+from pyowm import OWM
+from pyowm.utils import config
+from pyowm.utils import timestamps
+
+owm = OWM('3f925e4f954556cfab5aa93cd1b60aec')
+mgr = owm.weather_manager()
+
+observation = mgr.weather_at_place('Москва')
+w = observation.weather
+
+
+w.detailed_status         # 'clouds'
+w.wind()                  # {'speed': 4.6, 'deg': 330}
+w.humidity                # 87
+w.temperature('celsius')  # {'temp_max': 10.5, 'temp': 9.7, 'temp_min': 9.0}
+w.rain                    # {}
+w.heat_index              # None
+w.clouds                  # 75
+
+temp = int(w.temperature('celsius')['temp'])
+wind = int(w.wind()['speed'])
+
+print(f"Температура в Москве: {temp} градус, скорость ветра {wind} км/ч")
