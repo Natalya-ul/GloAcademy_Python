@@ -57,10 +57,11 @@ class RandomPointMovableBall(RandomPointBall):
         super().__init__(display)
 
         self.vx = random.randrange(-3, 3)
-        while self.vx == 0:
-            self.vx = random.randrange(-3, 3)
-            
         self.vy = random.randrange(-3, 3)
+        
+        while self.vx == 0 and self.vy == 0:
+            self.vx = random.randrange(-3, 3)
+            self.vy = random.randrange(-3, 3)
 
     def count_balls(ball):
         if (width - ball.radius) > ball.center_x > ball.radius and (hight - ball.radius) > ball.center_y > ball.radius:
