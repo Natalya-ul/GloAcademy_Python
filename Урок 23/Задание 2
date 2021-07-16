@@ -62,15 +62,14 @@ class RandomPointMovableBall(RandomPointBall):
             
         self.vy = random.randrange(-3, 3)
 
+    def count_balls(ball):
+        if (width - ball.radius) > ball.center_x > ball.radius and (hight - ball.radius) > ball.center_y > ball.radius:
+            return True    
 
-def count_balls(ball):
-    if (width - ball.radius) > ball.center_x > ball.radius and (hight - ball.radius) > ball.center_y > ball.radius:
-        return True
-    
 def show_count(counter):
     font = pygame.font.SysFont('arial', 25)
     text = font.render(f'Кол-во мячей = {counter}', True,
-                      pygame.Color('red'))
+                      pygame.Color('red'), pygame.Color('pink'))
     display.blit(text, (10, 50))
     
 pygame.init()
@@ -92,24 +91,27 @@ pygame.display.flip()
 
 time.sleep(2)
 
-clock=pygame.time.Clock()
+clock = pygame.time.Clock()
+
+counter = 0
+
 while True:
     event_list = pygame.event.get()
     for event in event_list:
         if event.type == pygame.QUIT:
             pygame.quit()
-
         if event.type == pygame.MOUSEBUTTONDOWN:
-            counter = 0
             for ball in balls:
                 ball.stop()
-                if count_balls(ball):
+                if RandomPointMovableBall.count_balls(ball):
                     counter += 1
                     
-            show_count(counter)
+    show_count(counter)
 
     for ball in balls:
         ball.move()
-
+        
+    show_count(counter)
+    
     pygame.display.flip()
     clock.tick(60)
