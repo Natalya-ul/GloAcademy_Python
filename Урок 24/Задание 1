@@ -80,47 +80,76 @@ class BillyardBall(RandomPointMovableBall):
         if ball.center_x <= self.radius:
             global counter_left
             counter_left += 1
-            self.show_count((0, hight / 2), counter_left)
+            direction = 'left'
+            return direction
         if ball.center_x >= width - self.radius:
             global counter_right
             counter_right += 1
-            self.show_count((width - 250, hight / 2), counter_right)
+            direction = 'right'
+            return direction
         if ball.center_y <= self.radius:
             global counter_top 
             counter_top += 1
-            self.show_count((width / 2, 0), counter_top)
+            direction = 'top'
+            return direction
         if ball.center_y >= hight - self.radius:
             global counter_bottom
             counter_bottom += 1
-            self.show_count((width / 2, hight - 50), counter_top)
+            direction = 'bottom'
+            return direction
 
-    def show_count(self, coordinates, counter):
-        text = font.render(f'Кол-во ударов =          ', True,
-                              pygame.Color('red'), pygame.Color('white'))
-        display.blit(text, coordinates)
-        
-        text = font.render(f'Кол-во ударов = {counter}', True,
-                              pygame.Color('red'), pygame.Color('white'))
-        display.blit(text, coordinates)
+    def show_count(self, direction):
+        if direction == 'left':
+            text = font.render(f'Кол-во ударов =          ', True,
+                                  pygame.Color('red'), pygame.Color('white'))
+            display.blit(text, (0, hight / 2))
+            
+            text = font.render(f'Кол-во ударов = {counter_left}', True,
+                                  pygame.Color('red'), pygame.Color('white'))
+            display.blit(text, (0, hight / 2))
+        if direction == 'right':
+            text = font.render(f'Кол-во ударов =          ', True,
+                                  pygame.Color('red'), pygame.Color('white'))
+            display.blit(text, (width - 250, hight / 2))
+
+            text = font.render(f'Кол-во ударов = {counter_right}', True,
+                                  pygame.Color('red'), pygame.Color('white'))
+            display.blit(text, (width - 250, hight / 2))
+        if direction == 'top':
+            text = font.render(f'Кол-во ударов =          ', True,
+                                  pygame.Color('red'), pygame.Color('white'))
+            display.blit(text, (width / 2, 0))
+            
+            text = font.render(f'Кол-во ударов = {counter_top}', True,
+                                  pygame.Color('red'), pygame.Color('white'))
+            display.blit(text, (width / 2, 0))
+        if direction == 'bottom':
+            text = font.render(f'Кол-во ударов =          ', True,
+                                  pygame.Color('red'), pygame.Color('white'))
+            display.blit(text, (width / 2, hight - 50))
+
+            text = font.render(f'Кол-во ударов = {counter_bottom}', True,
+                                  pygame.Color('red'), pygame.Color('white'))
+            display.blit(text, (width / 2, hight - 50))
 
 
 pygame.init()
 
-width = 700
-hight = 300
-display = pygame.display.set_mode((width, hight))
+width=700
+hight=300
+display=pygame.display.set_mode((width, hight))
 display.fill(pygame.Color('white'))
 
-font = pygame.font.SysFont('arial', 25)
+font=pygame.font.SysFont('arial', 25)
 
-counter_left = 0
-counter_right = 0
-counter_top = 0
-counter_bottom = 0
+counter_left=0
+counter_right=0
+counter_top=0
+counter_bottom=0
 
-balls = []
+balls=[]
 for i in range(6):
-    ball = BillyardBall(display)
+    ball=BillyardBall(display)
     ball.show()
     balls.append(ball)
 
@@ -128,8 +157,7 @@ pygame.display.flip()
 
 time.sleep(2)
 
-clock = pygame.time.Clock()
-
+clock=pygame.time.Clock()
 
 
 while True:
@@ -144,8 +172,10 @@ while True:
 
     for ball in balls:
         ball.move()
-        BillyardBall.counter(ball)
+        direction = BillyardBall.counter(ball)
+        BillyardBall.show_count(ball, direction)
 
-
+    BillyardBall.show_count(ball, direction)
+    
     pygame.display.flip()
     clock.tick(40)
