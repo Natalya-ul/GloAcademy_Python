@@ -69,6 +69,7 @@ class Student():
 
 class MenuStorage():
     def get_menu(self):
+
         menu = [
             'Получение полной информации о школе',
             'Изменение информации о школе',
@@ -84,31 +85,6 @@ class MenuStorage():
         for i in range(len(menu)):
                     print(f'{i+1}.{menu[i]}')
         print('---------------------------------------')
-
-    def get_item_number(self):
-        print('Введите номер пункта меню, который хотите выбрать:')
-        selected_menu_item = check_get_item()
-        self.use_menu(selected_menu_item)
-        
-    def use_menu(self, number):
-        if number == 1:
-            school = schoolStorage.get_all()
-            print(f'Название школы: {school.name}')
-            print(f'Адрес школы: {school.address}')
-            print(f'Кол-во учеников школы: {school.count_students}')
-            self.return_menu()
-
-        if number == 2:
-            if ask_question('Хотите изменить название школы?'):
-                schoolStorage.change_name()
-            if ask_question('Хотите изменить адрес школы?'):
-                schoolStorage.change_address()
-            self.return_menu()
-
-    def return_menu(self):
-        if ask_question('Хотите вернуться в меню?'):
-            self.print_menu(menu)
-            self.get_item_number()
 
 def ask_question(question):
     print(question, 'Введите Да или Нет.')
@@ -145,5 +121,23 @@ schoolStorage = SchoolStorage()
 school = schoolStorage.get_all()
 
 print(f'Добро пожаловать в школу "{school.name}"')
-menu_storage.print_menu(menu)
-menu_storage.get_item_number()
+while True:
+    menu_storage.print_menu(menu)
+    print('Введите номер пункта меню, который хотите выбрать:')
+    selected_menu_item = check_get_item()
+
+    if selected_menu_item == 1:
+        school = schoolStorage.get_all()
+        print(f'Название школы: {school.name}')
+        print(f'Адрес школы: {school.address}')
+        print(f'Кол-во учеников школы: {school.count_students}')
+        if ask_question('Хотите вернуться в меню?'):
+            continue
+
+    if selected_menu_item == 2:
+        if ask_question('Хотите изменить название школы?'):
+            schoolStorage.change_name()
+        if ask_question('Хотите изменить адрес ш    колы?'):
+                schoolStorage.change_address()
+        if ask_question('Хотите вернуться в меню?'):
+            continue
