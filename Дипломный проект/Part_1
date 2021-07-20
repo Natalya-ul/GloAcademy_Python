@@ -137,7 +137,7 @@ while True:
     if selected_menu_item == 2:
         if ask_question('Хотите изменить название школы?'):
             schoolStorage.change_name()
-        if ask_question('Хотите изменить адрес ш    колы?'):
+        if ask_question('Хотите изменить адрес школы?'):
                 schoolStorage.change_address()
         if ask_question('Хотите вернуться в меню?'):
             continue
