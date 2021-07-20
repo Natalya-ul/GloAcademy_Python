@@ -132,7 +132,8 @@ while True:
         print(f'Адрес школы: {school.address}')
         print(f'Кол-во учеников школы: {school.count_students}')
         if ask_question('Хотите вернуться в меню?'):
-            continue
+        else:
+            break
 
     if selected_menu_item == 2:
         if ask_question('Хотите изменить название школы?'):
@@ -141,3 +142,5 @@ while True:
                 schoolStorage.change_address()
         if ask_question('Хотите вернуться в меню?'):
             continue
+        else:
+            break
