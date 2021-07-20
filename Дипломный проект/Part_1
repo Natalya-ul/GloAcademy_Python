@@ -122,11 +122,20 @@ def ask_question(question):
 
 def get_item():
     user_answer = input()
-    while not user_answer.isdigit() or int(user_answer) < 1 or int(user_answer) > len(menu):
-        print(f'Введите число от 1 до {len(menu)}!')
+    while not user_answer.isdigit() or int(user_answer) < 1 or int(user_answer) > 5:
+        print(f'Введите число от 1 до 5!')
         user_answer = input()
     return int(user_answer)
 
+
+file_provider = FileProvider()
+menu_storage = MenuStorage()
+schoolStorage = SchoolStorage()
+school = schoolStorage.get_all()
+
+print(f'Добро пожаловать в школу "{school.name}"')
+menu_storage.get_menu()
+menu_storage.get_item_number()
 
 file_provider = FileProvider()
 menu_storage = MenuStorage()
