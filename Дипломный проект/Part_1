@@ -86,7 +86,7 @@ class MenuStorage():
         print('---------------------------------------')
 
     def get_item_number(self):
-        print('Введите пункт меню, который хотите выбрать:')
+        print('Введите номер пункта меню, который хотите выбрать:')
         selected_menu_item = get_item()
         self.use_menu(selected_menu_item)
         
