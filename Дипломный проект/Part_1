@@ -132,6 +132,7 @@ while True:
         print(f'Адрес школы: {school.address}')
         print(f'Кол-во учеников школы: {school.count_students}')
         if ask_question('Хотите вернуться в меню?'):
+            continue
         else:
             break
 
