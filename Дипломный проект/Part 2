@@ -85,16 +85,17 @@ class StudentStorage():
         file_provider.writelines(self.file_name, json_data)
 
     def print_all(self, students):
-        number = 'Номер ученика'
-        name = 'ФИО ученика'
-        age = 'Возраст'
-        number_class = 'Номер класса'
-        print(f'{number:13} {name:30}{age:8}{number_class:12}')
-        
-        students = self.get_all()
-        
-        for student in students:
-            print(f'{students.index(student)+1:13} {student.name:30}{student.age:8}{student.number_class:12}\n')
+        if not self.check_empty_list():
+            number = 'Номер ученика'
+            name = 'ФИО ученика'
+            age = 'Возраст'
+            number_class = 'Номер класса'
+            print(f'{number:13} {name:30}{age:8}{number_class:12}')
+            
+            students = self.get_all()
+            
+            for student in students:
+                print(f'{students.index(student)+1:13} {student.name:30}{student.age:8}{student.number_class:12}\n')
 
     def add(self):
         while True:
@@ -123,9 +124,9 @@ class StudentStorage():
 
     def remove(self):
         while True:
-            if len(students) == 0:
-                print('Список студентов пуст.')
+            if self.check_empty_list():
                 break
+            
             self.print_all(students)
             print('Введите номер ученика, которого надо удалить:')
             index = self.get_index_remove()
@@ -133,6 +134,9 @@ class StudentStorage():
             students.pop(index - 1)
             self.safe(students)
             print(f'Ученик под номером {index} успешно удален!')
+            
+            if self.check_empty_list():
+                break
 
             if get_general_input.ask_question('Хотите удалить еще одного ученика из списка?'):
                 continue
@@ -159,7 +163,12 @@ class StudentStorage():
             print(f'Такого номера не существует! Введите число от 1 до {len(students)}')
             index_remove = input()
         return int(index_remove)
-    
+
+    def check_empty_list(self):
+        if len(students) == 0:
+            print('Список студентов пуст!')
+            return True
+
 class MenuStorage():
     def get_menu(self):
         menu = [
@@ -269,4 +278,4 @@ while True:
         if get_general_input.ask_question('Хотите вернуться в меню?'):
             continue
         else:
-            break   
+            break        
