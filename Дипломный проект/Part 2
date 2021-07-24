@@ -34,9 +34,9 @@ class SchoolStorage():
         if not file_provider.exist(self.file_name):
             print('Здравствуйте! Введите информацию о школе:')
             print('Введите название школы:')
-            school_name = check_input_text()
+            school_name = get_general_input.get_input_text()
             print('Введите адрес школы:')
-            school_address = check_input_text()
+            school_address = get_general_input.get_input_text()
             school = School(school_name, school_address)
             self.safe(school)
             print(f'Школа "{school.name}" создана! Адрес школы: {school.address}')            
@@ -48,7 +48,7 @@ class SchoolStorage():
     def change_name(self):
         print('Введите новое название школы:')
         school = self.get_all()
-        new_name = get_input_text()
+        new_name = get_general_input.get_input_text()
         school.name = new_name
         self.safe(school)
         print(f'Название изменено! Новое название школы: {school.name}')
@@ -56,7 +56,7 @@ class SchoolStorage():
     def change_address(self):
         school = self.get_all()
         print('Введите новый адрес школы:')
-        new_address = get_input_text()
+        new_address = get_general_input.get_input_text()
         school.address = new_address
         self.safe(school)
         print(f'Адрес изменен! Новый адрес школы: {school.address}')
@@ -99,43 +99,67 @@ class StudentStorage():
     def add(self):
         while True:
             print('Введите Имя ученика:')
-            name = get_name()
+            name = self.get_name()
             print('Введите Фамилию ученика:')
-            surname = get_name()
+            surname = self.get_name()
             print('Введите Отчество ученика:')
-            patronymic = get_name()
-            name = f'{name} {surname} {patronymic}'
+            patronymic = self.get_name()
+            name = f'{surname} {name} {patronymic}'
             
             print('Введите возраст ученика:')
-            age = get_integer()
+            age = get_general_input.get_integer()
             
             print('Введите номер класса ученика:')
-            number_class = get_integer()
+            number_class = get_general_input.get_integer()
             
             student = Student(name, age, number_class)
             students.append(student)
             self.safe(students)
             
-            if ask_question('Хотите добавить еще одного ученика в список?'):
+            if get_general_input.ask_question('Хотите добавить еще одного ученика в список?'):
                 continue
             else:
-                break 
-        
+                break
+
     def remove(self):
         while True:
+            if len(students) == 0:
+                print('Список студентов пуст.')
+                break
             self.print_all(students)
             print('Введите номер ученика, которого надо удалить:')
-            index = get_index_remove()
+            index = self.get_index_remove()
     
             students.pop(index - 1)
             self.safe(students)
             print(f'Ученик под номером {index} успешно удален!')
 
-            if ask_question('Хотите удалить еще одного ученика из списка?'):
+            if get_general_input.ask_question('Хотите удалить еще одного ученика из списка?'):
                 continue
             else:
-                break 
+                break
+            
+    def get_name(self):
+        while True:
+            user_name = input()
+            user_name = user_name.replace(" ", "")
+            if user_name == '':
+                print(f'Введена пустая строка! Попробуйте снова.')
+                continue
+            if user_name.islower() or not user_name[0].isupper() or user_name.isupper():
+                print(f'Введите слово, первая буква которого является заглавной')
+                continue
+            else:
+                break
+        return user_name
 
+    def get_index_remove(self):
+        index_remove = input()
+        while not index_remove.isdigit() or int(index_remove) < 1 or int(index_remove) > len(students):
+            print(f'Такого номера не существует! Введите число от 1 до {len(students)}')
+            index_remove = input()
+        return int(index_remove)
+    
 class MenuStorage():
     def get_menu(self):
         menu = [
@@ -154,63 +178,43 @@ class MenuStorage():
                     print(f'{i+1}.{menu[i]}')
         print('---------------------------------------')
 
-def ask_question(question):
-    print(question, 'Введите Да или Нет.')
-    answer = input().lower()
-    while answer != 'да' and answer != 'нет':
-        print('Ответ некорректный! Возможные варианты ввода: Да или Нет')
+    def get_item(self):
+        menu_item = input()
+        while not menu_item.isdigit() or int(menu_item) < 1 or int(menu_item) > len(menu):
+            print(f'Введите число от 1 до {len(menu)}!')
+            menu_item = input()
+        return int(menu_item)
+    
+class GetGeneralInput():
+    def ask_question(self, question):
+        print(question, 'Введите Да или Нет.')
         answer = input().lower()
-    if answer == 'да':
-        return True
-    else:
-        return False
-
-def get_item():
-    user_answer = input()
-    while not user_answer.isdigit() or int(user_answer) < 1 or int(user_answer) > len(menu):
-        print(f'Введите число от 1 до {len(menu)}!')
+        while answer != 'да' and answer != 'нет':
+            print('Ответ некорректный! Возможные варианты ввода: Да или Нет')
+            answer = input().lower()
+        if answer == 'да':
+            return True
+        else:
+            return False
+    
+    def get_integer(self):
         user_answer = input()
-    return int(user_answer)
-
-def get_integer():
-    user_answer = input()
-    while not user_answer.isdigit() or int(user_answer) < 0 or int(user_answer) > 100:
-        print(f'Введите целое число!')
-        user_answer = input()
-    return int(user_answer)
-
-def get_input_text():
-    user_answer = input()
-    user_answer = user_answer.replace(" ", "")
-    while user_answer == '':
-        print(f'Введена пустая строка! Попробуйте снова.')
+        while not user_answer.isdigit() or int(user_answer) < 0 or int(user_answer) > 100:
+            print(f'Введите целое число!')
+            user_answer = input()
+        return int(user_answer)
+    
+    def get_input_text(self):
         user_answer = input()
         user_answer = user_answer.replace(" ", "")
-    return user_answer
-
-def get_name():
-    while True:
-        user_name = input()
-        user_name = user_name.replace(" ", "")
-        if user_name == '':
+        while user_answer == '':
             print(f'Введена пустая строка! Попробуйте снова.')
-            continue
-        if user_name.islower() or not user_name[0].isupper() or user_name.isupper():
-            print(f'Введите слово, первая буква которого является заглавной')
-            continue
-        else:
-            break
-    return user_name
-
-def get_index_remove():
-    index_remove = input()
-    while not index_remove.isdigit() or int(index_remove) < 1 or int(index_remove) > len(students):
-        print(f'Такого номера не существует! Введите число от 1 до {len(students)}')
-        index_remove = input()
-    return int(index_remove)
-    
+            user_answer = input()
+            user_answer = user_answer.replace(" ", "")
+        return user_answer
 
 file_provider = FileProvider()
+get_general_input = GetGeneralInput()
 menu_storage = MenuStorage()
 menu = menu_storage.get_menu()
 schoolStorage = SchoolStorage()
@@ -223,24 +227,24 @@ print(f'Добро пожаловать в школу "{school.name}"')
 while True:
     menu_storage.print_menu(menu)
     print('Введите номер пункта меню, который хотите выбрать:')
-    selected_menu_item = get_item()
+    selected_menu_item = menu_storage.get_item()
 
     if selected_menu_item == 1:
         school = schoolStorage.get_all()
         print(f'Название школы: {school.name}')
         print(f'Адрес школы: {school.address}')
         print(f'Кол-во учеников школы: {school.count_students}')
-        if ask_question('Хотите вернуться в меню?'):
+        if get_general_input.ask_question('Хотите вернуться в меню?'):
             continue
         else:
             break
 
     if selected_menu_item == 2:
-        if ask_question('Хотите изменить название школы?'):
+        if get_general_input.ask_question('Хотите изменить название школы?'):
             schoolStorage.change_name()
-        if ask_question('Хотите изменить адрес школы?'):
+        if get_general_input.ask_question('Хотите изменить адрес школы?'):
                 schoolStorage.change_address()
-        if ask_question('Хотите вернуться в меню?'):
+        if get_general_input.ask_question('Хотите вернуться в меню?'):
             continue
         else:
             break        
@@ -248,21 +252,21 @@ while True:
     if selected_menu_item == 3:
         students = student_storage.get_all()
         student_storage.print_all(students)
-        if ask_question('Хотите вернуться в меню?'):
+        if get_general_input.ask_question('Хотите вернуться в меню?'):
             continue
         else:
             break        
 
     if selected_menu_item == 4:
         student_storage.add()
-        if ask_question('Хотите вернуться в меню?'):
+        if get_general_input.ask_question('Хотите вернуться в меню?'):
             continue
         else:
             break        
         
     if selected_menu_item == 5:
         student_storage.remove()
-        if ask_question('Хотите вернуться в меню?'):
+        if get_general_input.ask_question('Хотите вернуться в меню?'):
             continue
         else:
-            break        
+            break   
